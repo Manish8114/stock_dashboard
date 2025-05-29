@@ -11,10 +11,11 @@ ticker = st.text_input("Enter NSE Stock Symbol (e.g., AMARAJABAT)", "AMARAJABAT"
 
 if ticker:
     df = get_intraday_data(ticker)
-    if df.empty or 'Close' not in df.columns or df['Close'].isna().all():
+    if df.empty or ('Close' not in df.columns) or (df['Close'].isna().all()):
         st.error("⚠️ Failed to fetch valid data for the ticker. Please try another symbol.")
     else:
         indicators = calculate_indicators(df)
+        # Continue rendering charts, stats, etc.
         
     news_data = fetch_news_and_sentiment(ticker)
 
