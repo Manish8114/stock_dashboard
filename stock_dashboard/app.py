@@ -7,20 +7,21 @@ from utils.news_sentiment import fetch_news_and_sentiment
 st.set_page_config(page_title="Stock Analysis Tool", layout="wide")
 st.title("📊 Intraday Stock Analysis")
 
-ticker = st.text_input("Enter NSE Stock Symbol (e.g., AMARAJABAT)", "AMARAJABAT")
+ticker = st.text_input("Enter NSE Stock Symbol (e.g., ITC)", "ITC")
 
 if ticker:
     df = get_intraday_data(ticker)
+    
     if df.empty or ('Close' not in df.columns) or (df['Close'].isna().all()):
         st.error("⚠️ Failed to fetch valid data for the ticker. Please try another symbol.")
     else:
+        # Only calculate and display indicators if data is valid
         indicators = calculate_indicators(df)
-        # Continue rendering charts, stats, etc.
-        
-    news_data = fetch_news_and_sentiment(ticker)
 
-    st.subheader("🔧 Technical Indicators")
-    st.write(indicators)
+        st.subheader("🔧 Technical Indicators")
+        st.write(indicators)
+
+        # Add other sections here (e.g., plots, support/resistance, etc.)
 
     st.subheader("📈 Price Chart")
     st.line_chart(df['Close'])
