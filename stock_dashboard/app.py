@@ -12,17 +12,12 @@ ticker = st.text_input("Enter NSE Stock Symbol (e.g., ITC)", "ITC")
 if ticker:
     df = get_intraday_data(ticker)
     
-    if df.empty:
+    if df.empty or ('Close' not in df.columns) or df['Close'].isna().all():
     st.error("⚠️ No data returned for the ticker. Please try another.")
-elif 'Close' not in df.columns:
-    st.error("⚠️ 'Close' column missing in data.")
-elif df['Close'].isna().all():
-    st.error("⚠️ All Close prices are NaN. Invalid data received.")
 else:
     indicators = calculate_indicators(df)
     st.subheader("🔧 Technical Indicators")
     st.write(indicators)
-
 
         st.error("⚠️ Failed to fetch valid data for the ticker. Please try another symbol.")
     else:
