@@ -23,6 +23,7 @@ else:
     st.subheader("🔧 Technical Indicators")
     st.write(indicators)
 
+
         st.error("⚠️ Failed to fetch valid data for the ticker. Please try another symbol.")
     else:
         # Only calculate and display indicators if data is valid
