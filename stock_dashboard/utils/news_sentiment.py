@@ -2,7 +2,7 @@
 from newsapi import NewsApiClient
 from vaderSentiment.vaderSentiment import SentimentIntensityAnalyzer
 
-newsapi = NewsApiClient(api_key='YOUR_NEWS_API_KEY')
+newsapi = NewsApiClient(api_key='e8dd41e46cba4f9da850a46f4395769c')
 analyzer = SentimentIntensityAnalyzer()
 
 def fetch_news_and_sentiment(ticker):
