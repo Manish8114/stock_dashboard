@@ -1,4 +1,7 @@
 
+import yfinance as yf
+import pandas as pd  # ✅ Add this line
+
 def get_intraday_data(ticker):
     try:
         df = yf.download(ticker + ".NS", period="1d", interval="5m")
